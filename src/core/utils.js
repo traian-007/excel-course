@@ -48,3 +48,9 @@ export function debounce(fn, wait) {
         timeout = setTimeout(later, wait)
     }
 }
+export function preventDefault(event) {
+    event.preventDefault()
+}
+// export function clone(obj) {
+//      return JSON.parse(JSON.stringify(obj))
+// } for initialState

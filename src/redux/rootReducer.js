@@ -1,5 +1,5 @@
 import {CHANGE_TEXT, CHANGE_STYLES, TABLE_RESIZE, APPLY_STYLE} from './types'
-import {CHANGE_TITLE} from '@/redux/types';
+import {CHANGE_TITLE, UPDATE_DATE} from '@/redux/types';
 
 export function rootReducer(state, action) {
     let field
@@ -25,6 +25,8 @@ export function rootReducer(state, action) {
             action.data.ids.forEach(id => {
                 val[id] = {...val[id], ...action.data.value}
             })
+            // console.log('stylesState : ', state.stylesState)
+            // console.log('currentStyles : ', state.currentStyles)
             return {
             ...state,
                 [field]: val,
@@ -32,11 +34,13 @@ export function rootReducer(state, action) {
             }
         case CHANGE_TITLE:
             return {...state, title: action.data}
+        case UPDATE_DATE:
+            return {...state, openedDate: new Date().toJSON()}
         default: return state
     }
 }
 function value(state, field, action) {
-    const val = state[field] || {}
+    const val = {...state[field]} || {}
     val[action.data.id] = action.data.value
     return val
 }
