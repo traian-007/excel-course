@@ -22,9 +22,10 @@ export class Toolbar extends ExcelStateComponent {
     toHTML() {
         return this.template
     }
+    // changes in store is implemented in state of toolbar
     storeChanged(changes) {
         this.setState(changes.currentStyles)
-        console.log(changes)
+        // console.log(changes)
     }
 
     onClick(event) {
